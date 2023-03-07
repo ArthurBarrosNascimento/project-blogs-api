@@ -9,8 +9,10 @@ app.get('/', (_request, response) => {
   response.send();
 });
 
-app.use(express.json());
+const { LoginRouter } = require('./routers');
 
+app.use(express.json());
+app.use('/login', LoginRouter);
 // ...
 
 // É importante exportar a constante `app`,
