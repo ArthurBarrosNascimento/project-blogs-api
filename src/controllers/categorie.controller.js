@@ -12,6 +12,17 @@ const createCategory = async (req, res) => {
   }
 };
 
+const getAllCategories = async (_req, res) => {
+  try {
+    const { message } = await CategoryService.getAllCategories();
+    return res.status(200).json(message);
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json('Erro banco');
+  }
+};
+
 module.exports = {
   createCategory,
+  getAllCategories,
 };
