@@ -32,8 +32,14 @@ const getAll = async () => {
   return { type: null, message: users };
 };
 
+const getUserById = async (id) => {
+  const user = await User.findOne({ where: { id }, attributes: { exclude: ['password'] } });
+  return { type: null, message: user };
+};
+
 module.exports = {
   verifiedEmailUser,
   createUser,
   getAll,
+  getUserById,
 };

@@ -41,8 +41,22 @@ const getAllUsers = async (_req, res) => {
   }
 };
 
+const getUserById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { message } = await UserService.getUserById(id);
+    console.log(message);
+    if (!message) return res.status(404).json({ message: 'User does not exist' });
+    return res.status(200).json(message);
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json('Erro banco');
+  }
+};
+
 module.exports = {
   verifiedIfEmailIsValid,
   createUser,
   getAllUsers,
+  getUserById,
 };
