@@ -31,7 +31,18 @@ const createUser = async (req, res) => {
   } 
 };
 
+const getAllUsers = async (_req, res) => {
+  try {
+    const { message } = await UserService.getAll();
+    return res.status(200).json(message);
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json('Erro banco');
+  }
+};
+
 module.exports = {
   verifiedIfEmailIsValid,
   createUser,
+  getAllUsers,
 };
