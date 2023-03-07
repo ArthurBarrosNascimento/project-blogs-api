@@ -11,4 +11,9 @@ const geraToken = (email) => {
   return token;
 };
 
-module.exports = geraToken;
+const verifyToken = (token) => jwt.verify(token, SECRET);
+
+module.exports = {
+  geraToken,
+  verifyToken,
+};

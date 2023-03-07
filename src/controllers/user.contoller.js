@@ -10,7 +10,7 @@ const verifiedIfEmailIsValid = async (req, res) => {
       return res.status(400)
         .json({ message: 'Invalid fields' });
     }
-    const newToken = token(email);
+    const newToken = token.geraToken(email);
     return res.status(200).json({ token: newToken });
   } catch (error) {
     console.log(error.message);
@@ -23,7 +23,7 @@ const createUser = async (req, res) => {
     const { displayName, email, password, image } = req.body;
     const { type, message } = await UserService.createUser(displayName, email, password, image);
     if (type) return res.status(type).json({ message });
-    const newToken = token(email);
+    const newToken = token.geraToken(email);
     return res.status(201).json({ token: newToken });
   } catch (error) {
     console.log(error.message);
