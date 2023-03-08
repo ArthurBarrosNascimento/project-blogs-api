@@ -23,7 +23,6 @@ const createUser = async (displayName, email, password, image) => {
   if (verifyIfExist.message) return { type: 409, message: 'User already registered' };
 
   const userCreate = await User.create({ displayName, email, password, image });
-
   return { type: null, message: userCreate };
 };
 

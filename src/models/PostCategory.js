@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     categoryId: { type: DataTypes.INTEGER, primaryKey: true },
   },
   {
-    tableName: 'users',
+    tableName: 'posts_categories',
     underscored: true,
     timestamps: false,
   }

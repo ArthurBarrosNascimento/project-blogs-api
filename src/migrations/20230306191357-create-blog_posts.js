@@ -1,5 +1,7 @@
 'use strict';
 
+const { NEWDATE } = require("mysql2/lib/constants/types");
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('blog_posts', {
@@ -28,9 +30,11 @@ module.exports = {
       },
       published: {
         type: Sequelize.DATE,
+        defaultValue: new Date()
       },
       updated: {
         type: Sequelize.DATE,
+        defaultValue: new Date()
       },
     });
   },
