@@ -5,7 +5,12 @@ const router = express.Router();
 const { PostController } = require('../controllers');
 const validateToken = require('../middleware/validateToken');
 const validatePostFields = require('../middleware/validatePostFields');
+const validatePostCategorys = require('../middleware/validateCategory');
 
-router.post('/', validatePostFields, validateToken, PostController.createPost);
+router.post('/',
+  validatePostFields,
+  validatePostCategorys,
+  validateToken,
+  PostController.createPost);
 
 module.exports = router;

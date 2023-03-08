@@ -1,4 +1,4 @@
-const { displayNameSchema, passwordSchema, emailSchema, arrayNumberSchema } = require('./shemas');
+const { displayNameSchema, passwordSchema, emailSchema } = require('./shemas');
 
 const validateDisplayName = (displayName) => {
   const { error } = displayNameSchema.validate(displayName);
@@ -24,17 +24,8 @@ const validatePassword = (password) => {
   return { type: null, message: '' };
 };
 
-const validateArrayOfNumbers = (array) => {
-  const { error } = arrayNumberSchema.validate(array);
-  if (error) {
-    return { type: 400, message: 'one or more "categoryIds" not found' };
-  }
-  return { type: null, message: '' };
-};
-
 module.exports = {
   validateDisplayName,
   validateEmail,
   validatePassword,
-  validateArrayOfNumbers,
 };
