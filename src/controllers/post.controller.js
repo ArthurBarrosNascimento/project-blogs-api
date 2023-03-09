@@ -12,6 +12,17 @@ try {
 }
 };
 
+const getAllBlogUserCategory = async (_req, res) => {
+  try {
+    const allInfos = await PostService.getAll();
+    return res.status(200).json(allInfos);
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json('Error banco');
+  }
+};
+
 module.exports = {
   createPost,
+  getAllBlogUserCategory,
 };

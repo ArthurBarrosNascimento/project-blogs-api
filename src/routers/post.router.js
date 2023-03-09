@@ -13,4 +13,6 @@ router.post('/',
   validateToken,
   PostController.createPost);
 
+router.get('/', validateToken, PostController.getAllBlogUserCategory);
+
 module.exports = router;
