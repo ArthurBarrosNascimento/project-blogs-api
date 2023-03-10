@@ -22,7 +22,22 @@ const getAllBlogUserCategory = async (_req, res) => {
   }
 };
 
+const getAllBlogsUserCategoryById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const allInfoById = await PostService.getAllInfosByBlogPostById(id);
+    if (!allInfoById) {
+      return res.status(404).json({ message: 'Post does not exist' });
+    }
+    return res.status(200).json(allInfoById);
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json('Error banco');
+  }
+};
+
 module.exports = {
   createPost,
   getAllBlogUserCategory,
+  getAllBlogsUserCategoryById,
 };
