@@ -23,7 +23,7 @@ const createUser = async (req, res) => {
     const { displayName, email, password, image } = req.body;
     const { type, message } = await UserService.createUser(displayName, email, password, image);
     if (type) return res.status(type).json({ message });
-    const newToken = token.geraToken(email);
+    const newToken = token.geraToken(email, message.id);
     return res.status(201).json({ token: newToken });
   } catch (error) {
     console.log(error.message);
@@ -45,7 +45,6 @@ const getUserById = async (req, res) => {
   try {
     const { id } = req.params;
     const { message } = await UserService.getUserById(id);
-    console.log(message);
     if (!message) return res.status(404).json({ message: 'User does not exist' });
     return res.status(200).json(message);
   } catch (error) {

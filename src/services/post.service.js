@@ -36,9 +36,9 @@ const getAll = async () => {
   return allPosts;
 };
 
-const getAllInfosByBlogPostById = async (id) => {
+const getAllInfosByBlogPostById = async (obj) => {
   const allPostById = await BlogPost.findOne({
-    where: { id },
+    where: obj,
     include: [
       { model: User, as: 'user', attributes: { exclude: ['password'] } },
       { model: Category, as: 'categories', through: { attributes: [] } },
@@ -47,8 +47,16 @@ const getAllInfosByBlogPostById = async (id) => {
   return allPostById;
 };
 
+const updateBlogPostById = async (id, title, content) => {
+  const blogPostUpdate = await BlogPost.update(
+    { title, content }, { where: { id } },
+  );
+  return blogPostUpdate;
+};
+
 module.exports = {
   createPost,
   getAll,
   getAllInfosByBlogPostById,
+  updateBlogPostById,
 };
